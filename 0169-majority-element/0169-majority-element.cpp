@@ -2,23 +2,24 @@ class Solution {
 public:
     int majorityElement(vector<int>& nums) 
     {
-        map<int,int> mpp;
-        for(int i  = 0; i < nums.size(); i ++)
+        int count = 0;
+        int ans;
+        for(int i = 0; i < nums.size(); i++)
         {
-            if(mpp.find(nums[i]) != mpp.end())
+            if(count == 0)
             {
-                if(mpp[nums[i]] >= (nums.size()/2))
-                {
-                    return nums[i];
-                }
-                mpp[nums[i]] ++;
+                ans = nums[i];
+            }
+            if(nums[i] == ans)
+            {
+                count++;
             }
             else
             {
-                mpp[nums[i]] = 1;
+                count--;
             }
         }
-        return nums[0];
+        return ans;
     }
 };
 
